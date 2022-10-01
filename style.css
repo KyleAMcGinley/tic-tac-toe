@@ -5,9 +5,18 @@
 }
 
 .gameboard-container{
-
+    max-width: 960px;
+    height: 960px;
+    margin: 100px auto;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
 .box{
-    
+    background-color: lightblue;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
 }
