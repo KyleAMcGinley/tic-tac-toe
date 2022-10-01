@@ -29,21 +29,23 @@ const gameboard = (() => {
         }
     }
     
-    return {displayingGame, 
+    return {displayingGame,
+        assigningListener,
         changingDisplayToX, 
-        assigningListener, 
         changingDisplayToO};
 })();
 
 gameboard.displayingGame();
-gameboard.changingDisplayToX();
 
 //Need object for players
 const player = (name) => {
     const getName = () => name;
+    const {assigningListener} = gameboard();
     const {changingDisplayToX} = gameboard();
+    assigningListener('click', changingDisplayToX);
 
-    return {getName, changingDisplayToX};
+    return {getName, assigningListener, changingDisplayToX};
 };
 
-const me = player('Kyle');
+const playerOne = player('Kyle');
+playerOne.changingDisplayToX();
