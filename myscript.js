@@ -16,7 +16,10 @@ const gameboard = (() => {
     }
 
     const changingDisplayToX = () => {
-        event.target.textContent = 'X';
+        const box = event.target.getAttribute('data-value');
+        gameBoardArray.splice(box, 1, 'X');
+        displayingGame();
+        console.log(gameBoardArray);
     }
 
     assigningListener('click', changingDisplayToX)
