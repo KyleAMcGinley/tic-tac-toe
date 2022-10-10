@@ -8,7 +8,24 @@ const gameboard = (() => {
     const boxes = document.querySelectorAll('div.box');
 
     gameBoardArray = ['', '', '', '', '', '', '', '', '', ];
+
+    const displayingGame = () => {
+        for(let i = 0; i < boxes.length; i++){
+        boxes[i].textContent = gameBoardArray[i];
+        }
+    }
     
+    return {displayingGame};
+})();
+
+gameboard.displayingGame();
+
+//Need object for players
+const player = (name) => {
+    const boxes = document.querySelectorAll('div.box');
+
+    const getName = () => console.log(name);
+
     const assigningListener = (listener, event) => {
         for(let i = 0; i < boxes.length; i++){
             boxes[i].addEventListener(listener, event);
@@ -19,13 +36,12 @@ const gameboard = (() => {
         const box = event.target.getAttribute('data-value');
         gameBoardArray.splice(box, 1, 'X');
         displayingGame();
-        console.log(gameBoardArray);
     }
 
-    assigningListener('click', changingDisplayToX)
-
     const changingDisplayToO = () => {
-        event.target.textContent = 'O';
+        const box = event.target.getAttribute('data-value');
+        gameBoardArray.splice(box, 1, 'O');
+        displayingGame();
     }
 
     const displayingGame = () => {
@@ -33,20 +49,11 @@ const gameboard = (() => {
         boxes[i].textContent = gameBoardArray[i];
         }
     }
-    
-    return {displayingGame,
-        assigningListener,
-        changingDisplayToX, 
-        changingDisplayToO};
-})();
 
-gameboard.displayingGame();
-
-//Need object for players
-const player = (name) => {
-    const getName = () => name;
-
-    return {getName};
+    return {getName, displayingGame, assigningListener,
+    changingDisplayToO, changingDisplayToX};
 };
 
 const playerOne = player('Kyle');
+playerOne.getName();
+playerOne.assigningListener('click', playerOne.changingDisplayToO);
