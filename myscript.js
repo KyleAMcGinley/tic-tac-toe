@@ -54,6 +54,7 @@ const player = (name) => {
     changingDisplayToO, changingDisplayToX};
 };
 
-const playerOne = player('Kyle');
-playerOne.getName();
-playerOne.assigningListener('click', playerOne.changingDisplayToO);
+const playerO = player('Kyle');
+const playerX = player('Other')
+playerO.assigningListener('click', playerO.changingDisplayToO);
+playerX.assigningListener('click', playerX.changingDisplayToX)
