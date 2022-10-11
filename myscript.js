@@ -20,47 +20,6 @@ const gameboard = (() => {
 
 gameboard.displayingGame();
 
-//Need object for players
-const player = (name) => {
-    const boxes = document.querySelectorAll('div.box');
-
-    const getName = () => console.log(name);
-
-    const assigningListener = (listener, event) => {
-        for(let i = 0; i < boxes.length; i++){
-            boxes[i].addEventListener(listener, event);
-        }
-    }
-
-    
-
-    const changingDisplayToX = () => {
-        const box = event.target.getAttribute('data-value');
-        gameBoardArray.splice(box, 1, 'X');
-        displayingGame();
-        test();
-    }
-
-    const changingDisplayToO = () => {
-        const box = event.target.getAttribute('data-value');
-        gameBoardArray.splice(box, 1, 'O');
-        displayingGame();
-    }
-
-    const displayingGame = () => {
-        for(let i = 0; i < boxes.length; i++){
-        boxes[i].textContent = gameBoardArray[i];
-        }
-    }
-
-    return {getName, displayingGame, assigningListener,
-    changingDisplayToO, changingDisplayToX};
-};
-
-const playerO = player('Kyle');
-const playerX = player('Other');
-
-playerX.assigningListener('click', playerX.changingDisplayToX);
 
 //Need object for controlling gameflow
 const gameFlow = (() => {
@@ -80,4 +39,43 @@ const gameFlow = (() => {
     return {test};
 })();
 
-gameFlow.test();
+//Need object for players
+const player = (name) => {
+    const boxes = document.querySelectorAll('div.box');
+
+    const getName = () => console.log(name);
+
+    const assigningListener = (listener, event) => {
+        for(let i = 0; i < boxes.length; i++){
+            boxes[i].addEventListener(listener, event);
+        }
+    }
+
+    const {test} = gameFlow();
+
+    const changingDisplayToX = () => {
+        const box = event.target.getAttribute('data-value');
+        gameBoardArray.splice(box, 1, 'X');
+        displayingGame();
+    }
+
+    const changingDisplayToO = () => {
+        const box = event.target.getAttribute('data-value');
+        gameBoardArray.splice(box, 1, 'O');
+        displayingGame();
+    }
+
+    const displayingGame = () => {
+        for(let i = 0; i < boxes.length; i++){
+        boxes[i].textContent = gameBoardArray[i];
+        }
+    }
+
+    return {getName, displayingGame, assigningListener,
+    changingDisplayToO, changingDisplayToX, test};
+};
+
+const playerO = player('Kyle');
+const playerX = player('Other');
+
+playerX.assigningListener('click', playerX.changingDisplayToX);
