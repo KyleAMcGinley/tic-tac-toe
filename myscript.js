@@ -14,11 +14,16 @@ const gameboard = (() => {
         boxes[i].textContent = gameBoardArray[i];
         }
     }
-    
+
     return {displayingGame};
 })();
 
 gameboard.displayingGame();
+
+//Need object for controlling gameflow
+const gameFlow = (() => {
+
+})();
 
 //Need object for players
 const player = (name) => {
@@ -55,6 +60,7 @@ const player = (name) => {
 };
 
 const playerO = player('Kyle');
-const playerX = player('Other')
+const playerX = player('Other');
+
 playerO.assigningListener('click', playerO.changingDisplayToO);
-playerX.assigningListener('click', playerX.changingDisplayToX)
+playerX.assigningListener('click', playerX.changingDisplayToX);
