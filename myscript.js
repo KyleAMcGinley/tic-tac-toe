@@ -59,6 +59,7 @@ const gameFlow = (() => {
         displayingGame();
         resetSum();
         addingXandO();
+        removingEventListener();
     }
 
     const changingDisplayToO = () => {
@@ -68,7 +69,6 @@ const gameFlow = (() => {
         resetSum();
         addingXandO();
         removingEventListener();
-        playingGame();
     }
 
     const displayingGame = () => {
@@ -77,16 +77,20 @@ const gameFlow = (() => {
         }
     }
 
+
     const playingGame = () => {
         if ((sumTotal + 1) % 2 === 0){
-            console.log('hello')
-        }
+            assigningListener('click', changingDisplayToO);
+            changingDisplayToO;
+        } else{
+            assigningListener('click', changingDisplayToX);
+            changingDisplayToX;
+            }
     }
 
     return {changingDisplayToO, assigningListener, changingDisplayToX, displayingGame, playingGame};
 })();
 
-gameFlow.assigningListener('click', gameFlow.changingDisplayToO)
 gameFlow.playingGame();
 
 //Need object for players
