@@ -25,6 +25,15 @@ gameboard.displayingGame();
 const gameFlow = (() => {
     //Need to get value of X and O values in the array
     const boxes = document.querySelectorAll('div.box');
+
+    const findingEmptyBoxes = (word) => {
+        return word === '';
+    }
+
+    const filteredEmptyBoxes = () => gameBoardArray.filter(findingEmptyBoxes);
+
+
+
     let sumTotal = 0;
 
     const getValuesInArray = (value) =>{
@@ -57,22 +66,12 @@ const gameFlow = (() => {
         const box = event.target.getAttribute('data-value');
         gameBoardArray.splice(box, 1, 'X');
         displayingGame();
-        resetSum();
-        addingXandO();
-        console.log(sumTotal);
-        alternatingTurns();
-        removingEventListener();
     }
 
     const changingDisplayToO = () => {
         const box = event.target.getAttribute('data-value');
         gameBoardArray.splice(box, 1, 'O');
         displayingGame();
-        resetSum();
-        addingXandO();
-        console.log(sumTotal);
-        alternatingTurns();
-        removingEventListener();
     }
 
     const displayingGame = () => {
@@ -80,8 +79,6 @@ const gameFlow = (() => {
         boxes[i].textContent = gameBoardArray[i];
         }
     }
-
-    assigningListener('click', changingDisplayToO)
 
     const alternatingTurns = () => {
             if((sumTotal + 1) % 2 === 0){
@@ -91,11 +88,27 @@ const gameFlow = (() => {
             }
         }
 
-    return {changingDisplayToO, removingEventListener, assigningListener, changingDisplayToX, displayingGame, alternatingTurns};
+    const playingGame = (sumTotal) => {
+        if((sumTotal + 1) % 2 === 0){
+            assigningListener('click', changingDisplayToX)
+            changingDisplayToX;
+            resetSum;
+            addingXandO;
+            removingEventListener;
+        } else{
+            assigningListener('click', changingDisplayToO)
+            changingDisplayToO;
+            resetSum;
+            addingXandO;
+            removingEventListener;
+        }
+    }
+
+    return {filteredEmptyBoxes, changingDisplayToO, removingEventListener, assigningListener, changingDisplayToX, displayingGame, alternatingTurns, playingGame};
 })();
 
 
-gameFlow.alternatingTurns();
+gameFlow.playingGame();
 
 //Need object for players
 const player = (name) => {
