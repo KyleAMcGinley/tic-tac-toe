@@ -59,6 +59,8 @@ const gameFlow = (() => {
         displayingGame();
         resetSum();
         addingXandO();
+        console.log(sumTotal);
+        alternatingTurns();
         removingEventListener();
     }
 
@@ -68,6 +70,8 @@ const gameFlow = (() => {
         displayingGame();
         resetSum();
         addingXandO();
+        console.log(sumTotal);
+        alternatingTurns();
         removingEventListener();
     }
 
@@ -77,21 +81,21 @@ const gameFlow = (() => {
         }
     }
 
+    assigningListener('click', changingDisplayToO)
 
-    const playingGame = () => {
-        if ((sumTotal + 1) % 2 === 0){
-            assigningListener('click', changingDisplayToO);
-            changingDisplayToO;
-        } else{
-            assigningListener('click', changingDisplayToX);
-            changingDisplayToX;
+    const alternatingTurns = () => {
+            if((sumTotal + 1) % 2 === 0){
+                console.log('hello');
+            }else{
+                console.log('there');
             }
-    }
+        }
 
-    return {changingDisplayToO, assigningListener, changingDisplayToX, displayingGame, playingGame};
+    return {changingDisplayToO, removingEventListener, assigningListener, changingDisplayToX, displayingGame, alternatingTurns};
 })();
 
-gameFlow.playingGame();
+
+gameFlow.alternatingTurns();
 
 //Need object for players
 const player = (name) => {
