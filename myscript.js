@@ -78,7 +78,7 @@ const gameFlow = (() => {
     }
 
     const playingGame = () => {
-        if (sumTotal === 1){
+        if ((sumTotal + 1) % 2 === 0){
             console.log('hello')
         }
     }
