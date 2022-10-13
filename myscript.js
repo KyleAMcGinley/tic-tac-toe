@@ -26,6 +26,7 @@ const gameFlow = (() => {
     //Need to get value of X and O values in the array
     const boxes = document.querySelectorAll('div.box');
     let sumTotal = 0;
+
     const getValuesInArray = (value) =>{
         if(value === 'X' || value === 'O'){
             sumTotal += 1;
@@ -34,10 +35,10 @@ const gameFlow = (() => {
 
     const resetSum = () => sumTotal = 0;
 
-    const test = () => {
+    const addingXandO = () => {
         for(let i = 0; i < gameBoardArray.length; i++){
             getValuesInArray(gameBoardArray[i]);
-        } return console.log(sumTotal)
+        } return sumTotal;
     }
 
     const assigningListener = (listener, event) => {
@@ -57,7 +58,7 @@ const gameFlow = (() => {
         gameBoardArray.splice(box, 1, 'X');
         displayingGame();
         resetSum();
-        test();
+        addingXandO();
     }
 
     const changingDisplayToO = () => {
@@ -65,8 +66,9 @@ const gameFlow = (() => {
         gameBoardArray.splice(box, 1, 'O');
         displayingGame();
         resetSum();
-        test();
+        addingXandO();
         removingEventListener();
+        playingGame();
     }
 
     const displayingGame = () => {
@@ -75,10 +77,17 @@ const gameFlow = (() => {
         }
     }
 
-    return {test, changingDisplayToO, assigningListener, changingDisplayToX, displayingGame};
+    const playingGame = () => {
+        if (sumTotal === 1){
+            console.log('hello')
+        }
+    }
+
+    return {changingDisplayToO, assigningListener, changingDisplayToX, displayingGame, playingGame};
 })();
 
 gameFlow.assigningListener('click', gameFlow.changingDisplayToO)
+gameFlow.playingGame();
 
 //Need object for players
 const player = (name) => {
