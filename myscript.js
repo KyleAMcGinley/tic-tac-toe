@@ -47,8 +47,9 @@ const gameFlow = (() => {
     }
 
     const removingEventListener = () => {
-        const box = event.target
-        box.removeEventListener('click', changingDisplayToO)
+        const box = event.target;
+        box.removeEventListener('click', changingDisplayToO);
+        box.removeEventListener('click', changingDisplayToX);
     }
 
     const changingDisplayToX = () => {
