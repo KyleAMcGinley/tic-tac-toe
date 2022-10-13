@@ -24,26 +24,21 @@ gameboard.displayingGame();
 //Need object for controlling gameflow
 const gameFlow = (() => {
     //Need to get value of X and O values in the array
+    const boxes = document.querySelectorAll('div.box');
     let sumX = 0;
     const getValuesInArray = (value) =>{
-        if(value === ''){
+        if(value === 'X'){
             sumX += 1;
         }
     }
+
+    const resetSum = () => sumX = 0;
+
     const test = () => {
         for(let i = 0; i < gameBoardArray.length; i++){
             getValuesInArray(gameBoardArray[i]);
         } return console.log(sumX)
     }
-
-    return {test};
-})();
-
-//Need object for players
-const player = (name) => {
-    const boxes = document.querySelectorAll('div.box');
-
-    const getName = () => console.log(name);
 
     const assigningListener = (listener, event) => {
         for(let i = 0; i < boxes.length; i++){
@@ -55,12 +50,15 @@ const player = (name) => {
         const box = event.target.getAttribute('data-value');
         gameBoardArray.splice(box, 1, 'X');
         displayingGame();
+        resetSum();
+        test();
     }
 
     const changingDisplayToO = () => {
         const box = event.target.getAttribute('data-value');
         gameBoardArray.splice(box, 1, 'O');
         displayingGame();
+        test()
     }
 
     const displayingGame = () => {
@@ -69,11 +67,17 @@ const player = (name) => {
         }
     }
 
-    return {getName, displayingGame, assigningListener,
-    changingDisplayToO, changingDisplayToX};
+    return {test, changingDisplayToO, assigningListener, changingDisplayToX, displayingGame};
+})();
+
+gameFlow.assigningListener('click', gameFlow.changingDisplayToX)
+
+//Need object for players
+const player = (name) => {
+    const getName = () => console.log(name);
+
+    return {getName};
 };
 
 const playerO = player('Kyle');
 const playerX = player('Other');
-
-playerX.assigningListener('click', playerX.changingDisplayToX);
