@@ -51,8 +51,6 @@ const player = (name) => {
         }
     }
 
-    const {test} = gameFlow();
-
     const changingDisplayToX = () => {
         const box = event.target.getAttribute('data-value');
         gameBoardArray.splice(box, 1, 'X');
@@ -72,7 +70,7 @@ const player = (name) => {
     }
 
     return {getName, displayingGame, assigningListener,
-    changingDisplayToO, changingDisplayToX, test};
+    changingDisplayToO, changingDisplayToX};
 };
 
 const playerO = player('Kyle');
